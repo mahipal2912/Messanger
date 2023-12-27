@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Messanger</string>
+    <string name="send" >Send Message</string>
+    <string name="recieve_message">You r in second activity</string>
+</resources>
