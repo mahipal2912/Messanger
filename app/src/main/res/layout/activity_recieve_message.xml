@@ -1,23 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".RecieveMessageActivity">
 
     <TextView
-            android:id="@+id/message"
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnSendtoOthers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"/>
-    <Button
-            android:id="@+id/btnSendto"
+            android:layout_marginTop="24dp"
+            android:layout_weight="1"
+            android:text="Send to Other Apps" />
+
+        <Button
+            android:id="@+id/btnSendtoMail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SendTo"
-            android:layout_marginTop="24dp"/>
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:text="Send to Mail" />
+
+    </LinearLayout>
+
+
 
 
 </LinearLayout>

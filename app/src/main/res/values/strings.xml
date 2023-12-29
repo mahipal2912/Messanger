@@ -4,5 +4,5 @@
     <string name="recieve_message">You r in second activity</string>
     <string name="msg">msg</string>
     <string name="icon" />
-    <string name="write">write</string>
+    <string name="write">write your message</string>
 </resources>
