@@ -26,16 +26,22 @@ public class CreateMessageActivity extends AppCompatActivity {
 
             String title = binding.etTitle.getText().toString().trim();
             String message = binding.etMsg.getText().toString().trim();
+            String email = binding.etEmail.getText().toString().trim();
+
 
             if (title.isEmpty()) {
                 Toast.makeText(this, "Title is empty!!", Toast.LENGTH_SHORT).show();
             } else if (message.isEmpty()) {
                 Toast.makeText(this, "Message is empty!!", Toast.LENGTH_SHORT).show();
+            } else if(email.isEmpty()){
+                Toast.makeText(this, "Email is empty!!", Toast.LENGTH_SHORT).show();
             } else {
                 Intent intent;
                 intent = new Intent(this, RecieveMessageActivity.class);
-                intent.putExtra(RecieveMessageActivity.EXTRA_MESSAGE, message);
                 intent.putExtra(RecieveMessageActivity.EXTRA_TITLE, title);
+                intent.putExtra(RecieveMessageActivity.EXTRA_MESSAGE, message);
+                intent.putExtra(RecieveMessageActivity.EXTRA_EMAIL,email);
+
                 startActivity(intent);
             }
         });

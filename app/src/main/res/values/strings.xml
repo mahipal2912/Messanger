@@ -5,4 +5,7 @@
     <string name="msg">msg</string>
     <string name="icon" />
     <string name="write">write your message</string>
+    <string name="writeEmail">write your email</string>
+    <string name="compose_your_message_here">Compose your message here</string>
+    <string name="writeTitle">write your title</string>
 </resources>
