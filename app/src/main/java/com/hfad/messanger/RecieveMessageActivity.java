@@ -7,9 +7,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.hfad.messanger.databinding.ActivityRecieveMessageBinding;
+
 
 public class RecieveMessageActivity extends AppCompatActivity {
 
@@ -20,6 +23,7 @@ public class RecieveMessageActivity extends AppCompatActivity {
     public static final String EXTRA_TITLE = "title";
     public static final String EXTRA_EMAIL = "email";
 
+    ActivityResultLauncher<String> takephoto;
 
     public static String TAG = "RecieveMessageActivity : Lifecycle";
 
@@ -40,14 +44,22 @@ public class RecieveMessageActivity extends AppCompatActivity {
         binding.tvTitle.setText(title);
         binding.tvMessage.setText(messageText);
         binding.tvEmail.setText(emailText);
-        binding.btnSendtoOthers.setOnClickListener(view -> composeMessageToOthers(title, messageText,emailText));
+        binding.btnSendtoOthers.setOnClickListener(view -> composeMessageToOthers(title, messageText, emailText));
 
-        binding.btnSendtoMail.setOnClickListener((view) -> composeEmail(title, messageText,emailText));
+        binding.btnSendtoMail.setOnClickListener((view) -> composeEmail(title, messageText, emailText));
+
+
+        takephoto = registerForActivityResult(
+                new ActivityResultContracts.GetContent(), result -> binding.imageView.setImageURI(result)
+        );
+
+
+        binding.btnImg.setOnClickListener(view -> takephoto.launch("image/*"));
 
     }
 
-    public void composeMessageToOthers(String title, String message,String email) {
-        String fullMessage = title + "\n" + message+ "\n" +email;
+    public void composeMessageToOthers(String title, String message, String email) {
+        String fullMessage = title + "\n" + message + "\n" + email;
         Intent intent1 = new Intent(Intent.ACTION_SEND);
         intent1.putExtra(Intent.EXTRA_TEXT, fullMessage);
         intent1.setType("text/plain");
@@ -60,7 +72,7 @@ public class RecieveMessageActivity extends AppCompatActivity {
         intent.setData(Uri.parse("mailto:")); // only email apps should handle this
         intent.putExtra(Intent.EXTRA_TEXT, title);
         intent.putExtra(Intent.EXTRA_TEXT, message);
-        intent.putExtra(Intent.EXTRA_TEXT,email);
+        intent.putExtra(Intent.EXTRA_TEXT, email);
 
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
